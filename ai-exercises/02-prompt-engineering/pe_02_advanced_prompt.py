@@ -137,3 +137,55 @@ problem_to_solve = "If there are 10 cars in the parking lot and 3 more cars arri
 prompt = self_consistency_instruction + problem_to_solve
 
 print(get_response(prompt))
+
+"""
+Iterative prompt engineering
+    - No prompt can be perfect at the beginning
+    - Prompt Engineering is an iterative process where we:
+        * Build a prompt
+        * Feed it to the model
+        * Observe and analyze the output
+        * Reiterate to make the prompt better
+    - Prompt refinement is used for various prompt types:
+        * Few-shot promps: refine examples
+        * Multi-step prompts: refine guiding steps
+        * Chain-of-thought and self-consistency prompts: refine problem description
+
+Steps for iterative prompt engineering
+    1. Craft a prompt
+    2. Send the prompt to the model
+    3. Observe and analyze the output
+    4. Identify potential issues with the prompt
+    5. Refine the prompt
+"""
+# Refine the following prompt
+not_refined_prompt = "Give me the top 10 pre-trained language models"
+prompt = """
+Create a table listing the top 10 pre-trained language models.
+
+The table should have exactly three columns: model name, release year, and owning company.
+
+Requirements:
+- Include exactly 10 rows, one per model.
+- Use the year the model was first publicly released.
+- Use the name of the company or organization that developed the model.
+- Output only the table, with no introduction or explanation.
+"""
+
+response = get_response(prompt)
+print(response)
+
+client = OpenAI(api_key="<OPENAI_API_TOKEN>")
+
+# Refine the following prompt
+prompt = """
+Receiving a promotion at work made me feel on top of the world -> Happiness
+The movie's ending left me with a heavy feeling in my chest -> Sadness
+Walking alone in the dark alley sent shivers down my spine -> Fear
+He walked to the store to buy some bread -> No explicit emotion
+She opened the window and looked outside -> No explicit emotion
+They sat and ate their meal ->
+"""
+
+response = get_response(prompt)
+print(response)
